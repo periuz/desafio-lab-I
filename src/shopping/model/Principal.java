@@ -1,9 +1,6 @@
 package model;
 
-import app.Data;
-import app.Endereco;
-import app.Loja;
-import app.Produto;
+import app.*;
 
 import java.util.Scanner;
 
@@ -107,4 +104,6 @@ public class Principal {
 
         return new Data(dia, mes, ano);
     }
+
+
 }
