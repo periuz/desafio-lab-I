@@ -1,0 +1,45 @@
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+# Arquivos de build (Maven e Gradle)
+target/
+build/
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.war
+*.ear
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+
+# Configurações do sistema operacional
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Arquivos do Maven
+.mvn/
+
+# Arquivos gerados por testes
+test-output/
+surefire-reports/
+
+# Cache de ferramentas de análise
+.checkstyle
+findbugs.xml
+pmd.xml
+.idea_modules/
+
+# Arquivos de ambiente
+.env
+*.env
