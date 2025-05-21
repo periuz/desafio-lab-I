@@ -15,6 +15,8 @@ build/
 *.log
 
 # Arquivos temporários
+*.class
+*.jar
 *.war
 *.ear
 *.tmp
@@ -26,6 +28,7 @@ build/
 Thumbs.db
 ehthumbs.db
 desktop.ini
+
 
 # Arquivos do Maven
 .mvn/
