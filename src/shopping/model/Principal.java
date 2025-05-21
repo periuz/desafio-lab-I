@@ -58,7 +58,11 @@ public class Principal {
         System.out.println("\n--- Data de Fundação ---");
         Data dataFundacao = criarData(scanner);
 
-        return new Loja(nome, qtdFuncionarios, salarioBase, endereco, dataFundacao);
+        System.out.print("Capacidade máxima do estoque de produtos: ");
+        int maxProdutos = scanner.nextInt();
+        scanner.nextLine();
+
+        return new Loja(nome, qtdFuncionarios, salarioBase, endereco, dataFundacao, maxProdutos);
     }
 
     private static Produto criarProduto(Scanner scanner) {

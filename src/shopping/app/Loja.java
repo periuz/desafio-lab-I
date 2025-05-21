@@ -6,21 +6,23 @@ public class Loja {
     private double salarioBaseFuncionario;
     private Endereco endereco;
     private Data dataFundacao;
+    private Produto[] estoqueProdutos;
 
-    public Loja (String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao) {
+    public Loja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int maxProdutos) {
+        inicializaLoja(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao, maxProdutos);
+    }
+
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int maxProdutos) {
+        inicializaLoja(nome, quantidadeFuncionarios, -1, endereco, dataFundacao, maxProdutos); // valor padrão
+    }
+
+    private void inicializaLoja(String nome, int quantidadeFuncionarios, double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int maxProdutos) {
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
-    }
-
-    public Loja (String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao) {
-        this.nome = nome;
-        this.quantidadeFuncionarios = quantidadeFuncionarios;
-        this.salarioBaseFuncionario = -1;
-        this.endereco = endereco;
-        this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[maxProdutos];
     }
 
     public String getNome() {return nome;}
@@ -61,13 +63,39 @@ public class Loja {
         this.dataFundacao = dataFundacao;
     }
 
-    @Override
-    public String toString() {
-        return "etapa_01.Loja: " + nome +
-                " | Funcionários: " + quantidadeFuncionarios +
-                " | Salário Base: " + (salarioBaseFuncionario == -1 ? "Não definido" : "R$" + salarioBaseFuncionario) +
-                " | Endereço: " + endereco +
-                " | Data de Fundação: " + dataFundacao;
+    public Produto[] getEstoqueProdutos() {
+        return estoqueProdutos;
+    }
+
+    public void setEstoqueProdutos(Produto[] estoqueProdutos) {
+        this.estoqueProdutos = estoqueProdutos;
+    }
+
+    public void imprimeProdutos() {
+        for (Produto produto : estoqueProdutos) {
+            if (produto != null) {
+                System.out.println(produto);
+            }
+        }
+    }
+
+    public boolean insereProduto(Produto produto) {
+        for (int i = 0; i < estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i] == null) {
+                estoqueProdutos[i] = produto;
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean removeProduto(String nomeProduto) {
+        for (int i = 0; i < estoqueProdutos.length; i++) {
+            if (estoqueProdutos[i] != null && estoqueProdutos[i].getNome().equals(nomeProduto)) {
+                estoqueProdutos[i] = null;
+                return true;
+            }
+        }
+        return false; // Produto não encontrado
     }
 
     public double gastosComSalario(){
@@ -91,4 +119,13 @@ public class Loja {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Loja: " + nome +
+                " | Funcionários: " + quantidadeFuncionarios +
+                " | Salário Base: " + (salarioBaseFuncionario == -1 ? "Não definido" : "R$" + String.format("%.2f", salarioBaseFuncionario)) +
+                " | Endereço: " + endereco +
+                " | Data de Fundação: " + dataFundacao +
+                " | Capacidade do Estoque: " + estoqueProdutos.length;
+    }
 }
